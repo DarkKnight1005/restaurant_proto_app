@@ -6,11 +6,13 @@ import 'package:provider/provider.dart';
 import 'package:restaurant_proto_app/Globals/appColors.dart';
 import 'package:restaurant_proto_app/models/product.dart';
 import 'package:restaurant_proto_app/models/subcategories.dart';
+import 'package:restaurant_proto_app/notifiers.dart/account_notifier.dart';
 import 'package:restaurant_proto_app/notifiers.dart/basket_notifier.dart';
 import 'package:restaurant_proto_app/notifiers.dart/home_notifier.dart';
 import 'package:restaurant_proto_app/notifiers.dart/ordered_notifier.dart';
 import 'package:restaurant_proto_app/services/API/menu_service.dart';
 import 'package:restaurant_proto_app/services/API/orderer_service.dart';
+import 'package:restaurant_proto_app/services/socket_controller.dart';
 import 'package:restaurant_proto_app/widgets/helpWidgets/animted_text_fade.dart';
 import 'package:restaurant_proto_app/widgets/helpWidgets/distance_determiner.dart';
 import 'package:restaurant_proto_app/widgets/helpWidgets/fadeOut_bound.dart';
@@ -46,6 +48,8 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home>, SingleTickerPr
   GlobalKey<DistanceDeterminerState> distanceDeterminer = GlobalKey();
   late MenuSerivce menuSerivce;
   ScrollController scrollController = ScrollController();
+  SocketController? socketController;
+  AccountNotifier? accountNotifier;
 
   
   @override
@@ -55,6 +59,7 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home>, SingleTickerPr
     homeNotifier!.distanceDeterminer = distanceDeterminer;
     homeNotifier!.scrollController = scrollController;
     OrderService(basketNotifier: basketNotifier!, orderNotifier: orderNotifier!).getOrdered();
+    socketController = SocketController(accountNotifier: accountNotifier!);
   }
 
   late final AnimationController _controller = AnimationController(
@@ -256,6 +261,7 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home>, SingleTickerPr
    homeNotifier = Provider.of<HomeNotifier>(context);
    basketNotifier = Provider.of<BasketNotifier>(context);
    orderNotifier = Provider.of<OrderNotifier>(context);
+   accountNotifier = Provider.of<AccountNotifier>(context);
 
   return Scaffold(
     backgroundColor: AppColors.textWhite,

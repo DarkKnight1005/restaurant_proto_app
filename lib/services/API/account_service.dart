@@ -44,4 +44,23 @@ class AccountService extends BaseService {
       return _response;
     }
   }
+
+  Future<bool> getAuthUser() async {
+    bool _response;
+    try {
+      
+      String? token = dbService.getAuthToken();
+      var _options = new Options(contentType: 'application/json', headers: {"Authorization": "Bearer " + (token ?? "")});
+
+      var _dioResponse = await dio.get(
+        serviceUrl + "getAuthUser",
+        options: _options,
+      );
+      _response = _dioResponse.data["isAuthed"]! as bool;
+      return _response;
+    } catch (e) {
+      debugPrint(e.toString());
+      return false;
+    }
+  }
 }

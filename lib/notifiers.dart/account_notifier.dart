@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:restaurant_proto_app/models/auth_dto.dart';
+import 'package:restaurant_proto_app/services/API/account_service.dart';
 import 'package:restaurant_proto_app/services/db_service.dart';
 
 class AccountNotifier extends ChangeNotifier {
@@ -16,6 +17,7 @@ class AccountNotifier extends ChangeNotifier {
 
     if(this._authDTO.authToken != null && !JwtDecoder.isExpired(this._authDTO.authToken!)){
       _isLogedIn = true;
+      _isLogedIn = await AccountService().getAuthUser();
     }else{
       updateAuthToken(null, needNotify: false);
     }
@@ -33,6 +35,13 @@ class AccountNotifier extends ChangeNotifier {
 
   void updateAuthToken(String? newToken, {bool needNotify = true}){
     dbService.setAuthToken(newToken);
+    this._authDTO = AuthDTO(tableNum: 1);
     if (needNotify) notifyListeners();
   }
+
+  void logOut(){
+    this.updateAuthToken(null);
+  }
+
+  AuthDTO get authDTO => _authDTO;
 }
