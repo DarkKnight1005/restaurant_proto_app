@@ -104,7 +104,7 @@ class BasketItem extends StatelessWidget {
                 fractionDigits: 2,
                 curve: Curves.easeInOut,
                 value: orderedProductCount == 1 ? product.price : basketNotifier!.getPriceForProduct(product.id),
-                suffix: "\$",
+                suffix: "₼",
                 textStyle: TextStyle(
                   color: AppColors.textBlack,
                   fontWeight: FontWeight.bold,

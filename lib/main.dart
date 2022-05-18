@@ -17,9 +17,6 @@ void main() async{
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AccountNotifier()),
-        ChangeNotifierProvider(create: (context) => HomeNotifier()),
-        ChangeNotifierProvider(create: (context) => BasketNotifier()),
-        ChangeNotifierProvider(create: (context) => OrderNotifier()),
       ],
       child: const MyApp()
     ),

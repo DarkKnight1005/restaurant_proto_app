@@ -15,7 +15,7 @@ class AccountService extends BaseService {
     AuthDTO? _response;
     try {
       
-      var _options = new Options(contentType: 'application/json');
+      var _options = new Options(contentType: 'application/json', headers: {"Access-Control-Allow-Origin": "*"});
 
       int tableNum = dbService.getTableNum();
 
@@ -29,6 +29,7 @@ class AccountService extends BaseService {
       var _pass1 = String.fromCharCode(minutes);
       var _pass2 = String.fromCharCode(minutes + 1);
 
+      debugPrint(serviceUrl);
       var _dioResponse = await dio.post(
         serviceUrl,
         options: _options,

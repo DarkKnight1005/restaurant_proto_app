@@ -29,7 +29,7 @@ class MenuSerivce extends BaseService {
         options: _options,
       );
       _response = Categories.fromJson(_dioResponse.data);
-      _response.categories.insert(0, (CategoryItem(id: -1, title: "Reccomended")));
+      _response.categories.insert(0, (CategoryItem(id: -1, title: "Recommended")));
       homeNotifier.setCategories(_response);
     } catch (e) {
       debugPrint(e.toString());

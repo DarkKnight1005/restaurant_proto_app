@@ -166,7 +166,7 @@ class ProductItem extends StatelessWidget {
                                   bottom: 0,
                                   child: Container(
                                     child: Text(
-                                      product.price.toString() + "0\$",
+                                      product.price.toString() + "0₼",
                                       style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: AppColors.primary),
                                     ),
                                   )

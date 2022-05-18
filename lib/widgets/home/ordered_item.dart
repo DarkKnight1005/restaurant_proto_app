@@ -85,7 +85,7 @@ class OrderedItem extends StatelessWidget {
                   fractionDigits: 2,
                   curve: Curves.easeInOut,
                   value: order.price,
-                  suffix: "\$",
+                  suffix: "₼",
                   textStyle: TextStyle(
                     color: AppColors.textBlack,
                     fontWeight: FontWeight.bold,

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:restaurant_proto_app/Globals/appColors.dart';
 import 'package:restaurant_proto_app/widgets/home/flat_button.dart';

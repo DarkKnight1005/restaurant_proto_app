@@ -32,7 +32,7 @@ class FloatingCard extends StatelessWidget {
             fractionDigits: 2,
             curve: Curves.easeInOut,
             value: number,
-            suffix: "\$",
+            suffix: "₼",
             textStyle: TextStyle(
               color: AppColors.textBlack,
               fontWeight: FontWeight.bold,
